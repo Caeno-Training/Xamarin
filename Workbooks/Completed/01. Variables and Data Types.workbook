@@ -1,0 +1,44 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+### Declaração de Variáveis e Tipos Básicos
+
+Alguns exercícios para práticar a declaração de variáveis e o entendimento dos tipos básicos do C#.
+
+**(1).** Escrever um programa que carregue quatro números inteiros em variáveis distintas e calcule a média aritmética entre eles apresentando no final.
+
+```csharp
+using static System.Console;
+
+double n1 = 5.4;
+double n2 = 7.9;
+double n3 = 6.1;
+double n4 = 8.3;
+var result = (n1 + n2 + n3 + n4) / 4;
+
+WriteLine($"A média dos números {n1}, {n2}, {n3} e {n4} é {result}");
+```
+
+**(2).** Escrever um programa que carregue o nome de uma pessoa em uma variável e imprima a mensagem: “Bem-vindo ao curso de Criação de Apps, NomePessoa“.
+
+```csharp
+var name = "Rafael";
+
+// Usando interpolação de Strings
+WriteLine($"Bem-vindo ao curso de Xamarin, {name}!");
+
+// Usando concatenação
+WriteLine($"Bem-vindo ao curso de Xamarin, " + name + "!");
+```
+
+**(3).** Escreva um programa que mostre o antecessor e o sucessor de um número inteiro carregado em uma variável.
+
+```csharp
+var numero = 10;
+
+// Usando expressões com interpolação de Strings
+WriteLine($"O antecessor de {numero} é {numero - 1} e o sucessor é {numero + 1}.");
+```

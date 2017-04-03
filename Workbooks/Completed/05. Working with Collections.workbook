@@ -1,0 +1,300 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+using static System.Console;
+```
+
+## Trabalhando com Coleções
+
+Alguns exercícios para prática do trabalho com coleções do C#.
+
+Para esses exercícios vamos nos basear na classe **Book** declarada abaixo, que usa a sintaxe reduzida de declaração de propriedades para definir 4 atributos.
+
+```csharp
+// Uma classe para representar as informações de um livro.
+class Book {
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public string Publisher { get; set; }
+    public int Year { get; set; }
+}
+```
+
+A variável **bookshelf** armazena uma lista com 20 livros. Note que usamos a sintaxe de inicialização de listas do C# para incluir os elementos da lista no momento da sua criação. Os objetos também usam essa sintaxe para definir seus atributos em uma única instrução, e assim criamos rapidamente uma estrutura em memória para trabalhar.
+
+```csharp
+// Cria uma lista de livros
+var bookshelf = new List<Book> {
+	new Book { Title = "A Divina Comédia", Author = "Dante Alighieri", Publisher = "Editora 34", Year = 1321 },
+	new Book { Title = "A Laranja Mecânica", Author = "Anthony Burgess", Publisher = "Aleph", Year = 1962 },
+	new Book { Title = "A Montanha Mágica", Author = "Thomas Mann", Publisher = "Nova Fronteira", Year = 1924 },
+	new Book { Title = "Admirável Mundo Novo", Author = "Aldous Huxley", Publisher = "Biblioteca Azul", Year = 1932 },
+	new Book { Title = "Cem Anos de Solidão", Author = "Gabriel García Márquez", Publisher = "Record", Year = 1967 },
+	new Book { Title = "Dom Quixote", Author = "Miguel de Cervantes", Publisher = "Francisco de Robles", Year = 1605 },
+	new Book { Title = "Drácula", Author = "Bram Stoker", Publisher = "Zahar", Year = 1897 },
+	new Book { Title = "Em Busca do Tempo Perdido", Author = "Marcel Proust", Publisher = "L&PM", Year = 1913 },
+	new Book { 
+        Title = "Ensaio Sobre a Cegueira", 
+        Author = "José Saramago", 
+        Publisher = "Companhia das Letras", 
+        Year = 1995 
+    },
+	new Book { Title = "Guerra e Paz", Author = "Liev Tolstói", Publisher = "Cosac & Naify", Year = 1869 },
+	new Book { Title = "Moby Dick", Author = "Herman Melville", Publisher = "Landmark", Year = 1851 },
+	new Book { 
+        Title = "O Apanhador no Campo de Centeio", 
+        Author = "J. D. Salinger", 
+        Publisher = "Editora do Autor", 
+        Year = 1951 
+    },
+	new Book { Title = "O Guarani", Author = "Jose de Alencar", Publisher = "Jiahu Books", Year = 1857 },
+	new Book { Title = "O Homem sem Qualidades", Author = "Robert Musil", Publisher = "Nova Fronteira", Year = 1930 },
+	new Book { Title = "O Processo", Author = "Franz Kafka", Publisher = "Companhia de Bolso", Year = 1925 },
+	new Book { Title = "O Retrato de Dorian Gray", Author = "Oscar Wilde", Publisher = "L&M Pocket", Year = 1890 },
+	new Book { Title = "O Som e a Fúria", Author = "William Faulkner", Publisher = "Cosac & Naify", Year = 1929 },
+	new Book { Title = "Os Miseráveis", Author = "Victor Hugo", Publisher = "Martin Claret", Year = 1862 },
+	new Book { Title = "Os Três Mosqueteiros", Author = "Alexandre Dumas", Publisher = "Zahar", Year = 1844 },
+	new Book { Title = "Ulisses", Author = "James Joyce", Publisher = "Penguin", Year = 1922 },
+};
+```
+
+### Exercícios
+
+**(1).** Enumere a coleção de livros apresentando seu título e autor e o ano da publicação. Ordene  a saída de acordo com o ano de publicação, apresentando os livros mais antigos primeiro.
+
+> **Dica**: procure pelos métodos ForEach() e Sort() da classe List<T>.
+
+```csharp
+// Cria um método para comparar livros baseado no ano
+int CompareByYear(Book b1, Book b2) {
+    return b1.Year.CompareTo(b2.Year);
+}
+
+// Ordena os elementos da lista usando o comparador e imprime
+bookshelf.Sort(CompareByYear);
+bookshelf.ForEach((b) => {
+    WriteLine($"{b.Year} - {b.Title}");
+});
+```
+
+**(2).** Adicione 5 novos livros a variável **bookshelf**, e remova os livros “O Guarani”, “O Som e a Fúria” e “Os Miseráveis”. Ao final imprima a listagem.
+
+> **Dica**: procure pelos métodos Add(), Find(), IndexOf() e Remove().
+
+```csharp
+// Adiciona dois livros manualmente
+bookshelf.Add(new Book { Title = "Livro 1", Author = "Autor", Publisher = "Editora", Year = 1980 });
+bookshelf.Add(new Book { Title = "Livro 2", Author = "Autor", Publisher = "Editora", Year = 1900 });
+
+// Adiciona os livros usando AddRange
+bookshelf.AddRange(new Book[] {
+    new Book { Title = "Livro 3", Author = "Autor", Publisher = "Editora", Year = 1990 },
+    new Book { Title = "Livro 4", Author = "Autor", Publisher = "Editora", Year = 1991 },
+    new Book { Title = "Livro 5", Author = "Autor", Publisher = "Editora", Year = 1995 },
+});
+
+// Removendo itens
+// Forma 1: Procura pelos livros para remover usando FindIndex() e RemoveAt()
+string[] titles = { "O Guarani", "O Som e a Fúria" };
+foreach (var t in titles) {
+    var index = bookshelf.FindIndex(b => b.Title == t);
+    if (index >= 0)
+        bookshelf.RemoveAt(index);
+}
+
+// Forma 2: Procura livro para remover usando Find() e Remove()
+var title = "Os Miseráveis";
+var bookToDelete = bookshelf.Find(b => b.Title == title);
+bookshelf.Remove(bookToDelete);
+
+// Imprime o resultado usando o método ForEach da classe List<T>. 
+bookshelf.ForEach((b) => {
+    WriteLine($"{b.Year} - {b.Title}");
+});
+```
+
+**(3).** Obtenha a contagem dos registros na coleção de livros, cujo o ano de publicação seja maior que 1915. Separadamente obtenha a contagem dos livros publicados pela editora ‘Zahar’.
+
+```csharp
+// Contagem dos livros publicados depois de 1915
+var countByYear = bookshelf.FindAll(b => b.Year > 1915).Count;
+WriteLine($"Livros publicados depois de 1915: {countByYear}");
+
+// Contagem de livros publicados pela Editora Zahar
+const string PUBLISHER = "Zahar";
+var countByPublisher = bookshelf.FindAll(b => b.Publisher == PUBLISHER).Count;
+WriteLine($"Livros publicados depois de {PUBLISHER}: {countByPublisher}");
+```
+
+**(4).** Utilizando a estrutura de dados para representar cores, criada no exercício anterior, crie uma lista com as cores do arco-iris.
+
+```csharp
+// Estrutura para armazenar uma cor
+struct Color {
+
+    public Color(string name, ConsoleColor consoleColor, byte red = 0, byte green = 0, byte blue = 0) {
+        Name = name;
+        Red = red;
+        Green = green;
+        Blue = blue;
+        ConsoleColor = consoleColor;
+    }
+
+    public string Name { get; set; }
+
+    public byte Red { get; set; }
+
+    public byte Green { get; set; }
+
+    public byte Blue { get; set; }
+
+    public string ToHex() {
+        return $"#{Red:X2}{Green:X2}{Blue:X2}";
+    }
+
+    // Propriedade incluida para representar a cor de impressão no Console
+    public ConsoleColor ConsoleColor { get; set; }
+
+}
+
+// Cria a lista de cores do arco-íris
+// O Console do C# permite imprimir a fonte e a cor de fundo em número limitado de cores na enumeração 'ConsoleColor''
+// Procuramos fazer uma aproximação das cores para produzir um efeito visual mais agradável ao resultado
+var rainbow = new List<Color> {
+    new Color("Vermelho", ConsoleColor.Red, red: 255),
+    new Color("Laranja", ConsoleColor.DarkYellow, red: 255, green: 127),
+    new Color("Amarelo", ConsoleColor.Yellow, red: 255, green: 255),
+    new Color("Verde", ConsoleColor.Green, green: 255),
+    new Color("Azul", ConsoleColor.Blue, blue: 255),
+    new Color("Índigo", ConsoleColor.DarkMagenta, red: 75, blue: 130),
+    new Color("Violeta", ConsoleColor.Magenta, red: 143, blue: 255),
+};
+
+// Imprime o resultado
+foreach (var c in rainbow) {
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.BackgroundColor = c.ConsoleColor;
+    WriteLine($"{c.Name.PadRight(50)}");
+}
+```
+
+**(5).** Crie um dicionário para implementar um sistema de ajuda simples para as palavras-chaves do C#. A palavra-chave deve ser a chave, e o valor deve ser uma breve descrição do que ela representa e qual sua utilização.\
+\
+Ao final enumere o dicionário apresentando as palavras-chaves e sua documentação associada.
+
+```csharp
+// Cria um dictionary para armazenar os registros de palavras-chave do C#
+var csKeywords = new Dictionary<string, string>();
+
+// Inclui alguns registros ao dicionário
+csKeywords["short"] = "Declara uma variável inteira de 16 bits.";
+csKeywords["void"] = "Determinar que um método não retorna nenhum valor.";
+csKeywords["struct"] = "Declara uma estrutura simples, tipo por valor.";
+
+// Imprime o conteúdo do dicionário 
+foreach (var key in csKeywords.Keys) {
+    WriteLine($"{key}: \t{csKeywords[key]}");
+}
+```
+
+**(6).** Utilize um dicionário para compor o cabeçalho de um REQUEST HTTP com as seguintes características:
+
+* **Host**: o host do request será *www.it4cio.com*
+
+* **Accept**: aceitar content-types do response no tipo\* JSON\* ou *XML*.
+
+* **Accept-Language**: informe que o seu response pode ser retornado em línguage portuguesa ou inglesa.
+
+* **Content-Lenght**: o request tem um conteúdo de 500 bytes.
+
+* **Content-Type**: informe que o tipo de conteúdo no Request é um JSON.
+
+* **User-Agent**: identifique o request com o browser que você costuma utilizar.
+
+> Caso precise de uma referência sobre os cabeçalhos HTTP, consulte [este link](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields "este link").
+
+Note que alguns cabeçalhos podem receber um ou mais parâmetros. Logo a estrutura dicionário para conter esses valores pode ser simples (armazenando apenas uma *string* como valor) ou composta (armazenando um tipo complexo como valor). Leve em consideração esses pontos em sua implementação.
+
+```csharp
+// Cria uma interface que descreve o conteúdo de um cabeçalho HTTP em uma String
+interface IHttpHeaderValue {
+    // Retorna o conteúdo do cabeçalho
+    string Content { get; }    
+}
+
+// Declara um cabeçalho HTTP padrão, contendo apenas um valor String
+class DefaultHeader : IHttpHeaderValue {
+
+    public DefaultHeader(string header) {
+        Content = header;
+    }
+
+    public string Content { get; private set; }
+
+}
+
+// Declara uma classe para representar o cabeçalho 'Accept-Language'
+// Ele pode ser representado por uma lista d evalores
+class AcceptLanguageHeader : IHttpHeaderValue {
+
+    public AcceptLanguageHeader(string language) {
+        this.languages = new string[] { language };
+    }
+
+    public AcceptLanguageHeader(string[] languages) {
+        this.languages = languages; 
+    }
+
+    private string[] languages;
+
+    // Constroi o conteúdo de acordo com a lista de linguas passadas
+    public string Content {
+        get {
+            var str = new System.Text.StringBuilder();
+            var isFirst = true;
+
+            foreach (var lang in languages) {
+                if (!isFirst)
+                    str.Append(", ");
+
+                str.Append(lang);
+                isFirst = false;    
+            }
+
+            return str.ToString();
+        }
+    }
+
+}
+
+// Declara um dicionário cuja a chave é uma string representando o header
+// E que armazena qualquer objeto que implemente a interface IHttpHeaderValue
+var headers = new Dictionary<string, IHttpHeaderValue> {
+    ["Host"] = new DefaultHeader("www.it4cio.com"),
+    ["Accept"] = new DefaultHeader("application/json"),
+    ["Accept-Language"] = new AcceptLanguageHeader(new string[] { "pt-BR", "en-US", "es" }),
+    ["Content-Length"] = new DefaultHeader(500.ToString()),
+    ["Content-Type"] = new DefaultHeader("application/json"),
+    ["User-Agent"] = new DefaultHeader("Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) FxiOS/6.0 Mobile/14D27 Safari/602.4.6"),
+};
+
+//
+// Constrói o Request HTTP com base nos cabeçalhos
+
+// Método
+WriteLine("POST /contact.php HTTP/1.1");
+
+// Cabeçalhos
+foreach (var header in headers) {
+    WriteLine($"{header.Key}: {header.Value.Content}");
+}
+
+// Corpo
+WriteLine();
+WriteLine("{\"name\": \"Usuario Teste\",\"email\":\"teste@mail.com\",\"subject\":\"Mensagem de Teste\",\"body\": \"Mensagem de teste enviada para o site.\"}");
+```
+

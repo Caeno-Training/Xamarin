@@ -1,0 +1,290 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+using static System.Console;
+```
+
+### Estruturas de Dados
+
+Alguns exercícios para prática de aplicação das estruturas de dados do C#.
+
+**(1)**. Construa uma classe ou estrutura (struct) que receba um nome e declare duas funções: a primeira deve retornar o número de vogais e a segunda o número de consoantes.
+
+Considere re-escrever esse programa usando propriedades somente leitura.
+
+```csharp
+// Uma estrutura para representar informações de uma string
+struct StringInfo {
+
+    // Representa o conteúdo analizado por essa instância.
+    public string Content { get; set; }
+
+    // Construtor padrão
+    public StringInfo(string content) {
+        Content = content;
+    }
+
+    // Lista dos caracteres considerados vogais
+    static readonly char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+
+    // Conta o número de vogais no conteúdo desta instância.  
+    public int CountVowels() {
+        int count = 0;
+
+        foreach (var c in Content) {
+            foreach (var v in vowels) {
+                if (c == v) {
+                    count++;
+                    break;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    // Propriedade computada para facilitar o acesso ao método de contagem de vogais.
+    public int Vowels => CountVowels();
+
+    // Lista dos caracteres considerados vogais
+    static readonly string consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+
+    // Conta o número de consoantes no conteúdo desta instância.  
+    public int CountConsonants() {
+        int count = 0;
+
+        foreach (var c in Content) {
+            foreach (var co in consonants) {
+                if (c == co) {
+                    count++;
+                    break;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    // Propriedade computada para facilitar o acesso ao método de contagem de consoantes.
+    public int Consonants => CountConsonants();
+
+    // Sobrescreve o método ToString() para retornar o conteúdo.
+    public override string ToString() {
+        return Content;
+    }
+
+}
+
+// Exemplo de aplicação 1
+var stringInfo1 = new StringInfo("Conteúdo de Teste do Contador do StringInfo.");
+WriteLine($"A string: '{stringInfo1.Content}' tem {stringInfo1.CountVowels()} vogais e {stringInfo1.CountConsonants()} consoantes.");
+
+// Exemplo de aplicação 2
+var stringInfo2 = new StringInfo("Curso de Xamarin para IT4CIO.");
+WriteLine($"A string: '{stringInfo2}' tem {stringInfo2.Vowels} vogais e {stringInfo2.Consonants} consoantes.");
+```
+
+**(2).** Crie uma classe ou estrutura (struct) para armazenar uma cor, com quatro propriedades e um método:
+
+* **Nome**: uma string com o nome da cor
+
+* **Red**: um byte representando a porção de vermelho na composição da cor.
+
+* **Green**: um byte representando a porção de verde da cor.
+
+* **Blue**: um byte representando a porção de azul na composição da cor.
+
+* **ToHex()**: Um método que retorna uma string com a representação hexadecimal da cor.
+
+Crie variáveis para armazenar as cores: vermelho, verde, azul, cinza, branco e preto, e imprima elas com suas representações decimais e hexadecimais.
+
+```csharp
+// Representa uma cor
+struct Color {
+
+    // Nome da Cor.
+    public string Name { get; set; }
+
+    // Intensidade de Vermelho.
+    public byte Red { get; set; }
+
+    // Intensidade de Verde.
+    public byte Green { get; set; }
+
+    // Intensidade de Branco.
+    public byte Blue { get; set; }
+
+    // Construtor Padrão
+    public Color(string name, byte? red = null, byte? green = null, byte? blue = null) {
+        Name = name;
+
+        // O construtor recebe valores nuláveis, então se não forem definidos assumimos como zero.
+        Red = red ?? 0;
+        Green = green ?? 0;
+        Blue = blue ?? 0;
+    }
+
+    // Converte essa instância na representação de cor RGB Hexadecimal.
+    public string ToHex() {
+        // Obtém os componentes individualmente
+        var redComponent = $"{Red:X}".PadLeft(2, '0');
+        var greenComponent = $"{Green:X}".PadLeft(2, '0');
+        var blueComponent = $"{Blue:X}".PadLeft(2, '0');
+        
+        // Constroi a string de RGB Hexadecimal
+        return $"#{redComponent}{greenComponent}{blueComponent}";
+    }
+
+}
+
+// Define um array para guardar as cores
+var colorTable = new Color[] { 
+    new Color("Preto"),
+    new Color("Vermelho", red: 255),
+    new Color("Verde", green: 255),
+    new Color("Azul", blue: 255),
+    new Color("Cinza", 128, 128, 128),
+    new Color("Branco", 255, 255, 255),
+};
+
+// Enumera as cores
+foreach (var color in colorTable) {
+    WriteLine($"Cor: {color.Name}, RGB: ({color.Red},{color.Green},{color.Blue}, Hex: {color.ToHex()}");
+}
+```
+
+**(3).** Construa uma classe *Book* para armazenar as informações referentes a um livro.: **titulo**, **autor**, **editora**, **edição**, e **ano**. O autor deve ser representando por uma outra classe *Person* que deve ter as propriedades **nome**, **data de nascimento**, **data de falecimento** (opcional) e país de origem.
+
+Crie alguns registros de autores em variáveis separadas ou em um Array, e a seguir crie alguns registros de livros desses autores. Ao final imprima as informações.
+
+```csharp
+// Uma classe representando as informações de um Autor
+class Author {
+
+    // Nome do Autor
+    public string Name { get; set; }
+
+    // Data de Nascimento
+    public DateTime Birthday { get; set; }
+
+    // Data de Falecimento, informação opcional (nulável)
+    public DateTime? DeathDate { get; set; }    
+
+}
+
+// Uma classe representando as informações de um livro
+class Book {
+
+    // Título do Livro
+    public string Title { get; set; }
+
+    // Referência para um objeto representando o Autor
+    public Author Author { get; set; }
+
+    // Nome da Editora.
+    public string Publisher { get; set; }
+
+    // Número da Edição
+    public int Edition { get; set; }
+
+    // Ano de Publicação
+    public int Year { get; set; }
+
+}
+
+// Alguns registros de autores
+var authors = new Author[] {
+    new Author { Name = "Aldous Huxley", Birthday = new DateTime(1894, 7, 26), DeathDate = new DateTime(1963, 11, 22) },
+    new Author { Name = "José Saramago", Birthday = new DateTime(1922, 11, 16), DeathDate = new DateTime(2010, 6, 18) },
+    new Author { Name = "Dan Brown", Birthday = new DateTime(1964, 6, 22) },
+};
+
+// Alguns registros de livros
+Book[] books = { 
+    new Book { 
+        Title = "Ensaio Sobre a Cegueira", 
+        Author = authors[1], 
+        Publisher = "Companhia das Letras",
+        Edition = 1,
+        Year = 1995
+    },
+    new Book { 
+        Title = "Admirável Mundo Novo",
+        Author = authors[0],
+        Publisher = "Biblioteca Azul",
+        Edition = 1,
+        Year = 1932 
+    },
+    new Book { 
+        Title = "O Código da Vinci",
+        Author = authors[2],
+        Publisher = "Sextante",
+        Edition = 1,
+        Year = 2003 
+    },
+};
+
+// Imprime as informações
+foreach (var b in books) {
+    var deathYear = b.Author.DeathDate.HasValue ? $"-{b.Author.DeathDate.Value.Year}" : "";
+    WriteLine($"{b.Title}, {b.Author.Name} ({b.Author.Birthday.Year}{deathYear}), {b.Publisher}, {b.Year}");
+}
+```
+
+**(4).** Crie uma enumeração para representar os meses do ano no calendário gregoriano. A partir dessa enumeração, crie uma estrutura (struct) contendo duas propriedades: **mês**, do tipo da enumeração de meses do ano, e **dias do mês**, um inteiro contendo a quantidade de dias naquele mês.
+
+Com sua estrutura de dados montada, crie um array para objetos do tipo da sua estrutura, representando cada um dos meses do ano, e ao final imprima os meses sequencialmente com o respectivo número de dias que ele contem.
+
+```csharp
+// Uma enumeração representando os mesês do ano
+enum Month {
+    January,
+    February,
+    March,
+    April,
+    May,
+    June,
+    July,
+    August,
+    September,
+    October,
+    November,
+    December,
+}
+
+// Uma estrutura para representar a quantidade os meses e seus respectivos dias
+struct MonthInfo {
+
+    // Mês sendo representado
+    public Month Month { get; set; }
+
+    // Total de dias
+    public int TotalDays { get; set; }
+
+}
+
+// Array para armazenar os meses do ano
+MonthInfo[] monthInfos = new MonthInfo[12];
+monthInfos[(int)Month.January] = new MonthInfo { Month = Month.January, TotalDays = 31 };
+monthInfos[(int)Month.February] = new MonthInfo { Month = Month.February, TotalDays = 28 };
+monthInfos[(int)Month.March] = new MonthInfo { Month = Month.March, TotalDays = 31 };
+monthInfos[(int)Month.April] = new MonthInfo { Month = Month.April, TotalDays = 30 };
+monthInfos[(int)Month.May] = new MonthInfo { Month = Month.May, TotalDays = 31 };
+monthInfos[(int)Month.June] = new MonthInfo { Month = Month.June, TotalDays = 30 };
+monthInfos[(int)Month.July] = new MonthInfo { Month = Month.July, TotalDays = 31 };
+monthInfos[(int)Month.August] = new MonthInfo { Month = Month.August, TotalDays = 31 };
+monthInfos[(int)Month.September] = new MonthInfo { Month = Month.September, TotalDays = 30 };
+monthInfos[(int)Month.October] = new MonthInfo { Month = Month.October, TotalDays = 31 };
+monthInfos[(int)Month.November] = new MonthInfo { Month = Month.November, TotalDays = 30 };
+monthInfos[(int)Month.December] = new MonthInfo { Month = Month.December, TotalDays = 31 };
+
+// Imprime as informações
+foreach (var monthInfo in monthInfos) {
+    WriteLine($"{monthInfo.Month} tem {monthInfo.TotalDays} dias.");
+}
+```
+

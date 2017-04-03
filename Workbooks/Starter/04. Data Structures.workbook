@@ -1,0 +1,55 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+using static System.Console;
+```
+
+### Estruturas de Dados
+
+Alguns exercícios para prática de aplicação das estruturas de dados do C#.
+
+**(1)**. Construa uma classe ou estrutura (struct) que receba um nome e declare duas funções: a primeira deve retornar o número de vogais e a segunda o número de consoantes.
+
+Considere re-escrever esse programa usando propriedades somente leitura.
+
+```csharp
+// Resposta
+```
+
+**(2).** Crie uma classe ou estrutura (struct) para armazenar uma cor, com quatro propriedades e um método:
+
+* **Nome**: uma string com o nome da cor
+
+* **Red**: um byte representando a porção de vermelho na composição da cor.
+
+* **Green**: um byte representando a porção de verde da cor.
+
+* **Blue**: um byte representando a porção de azul na composição da cor.
+
+* **ToHex()**: Um método que retorna uma string com a representação hexadecimal da cor.
+
+Crie variáveis para armazenar as cores: vermelho, verde, azul, cinza, branco e preto, e imprima elas com suas representações decimais e hexadecimais.
+
+```csharp
+// Resposta
+```
+
+**(3).** Construa uma classe *Book* para armazenar as informações referentes a um livro.: **titulo**, **autor**, **editora**, **edição**, e **ano**. O autor deve ser representando por uma outra classe *Person* que deve ter as propriedades **nome**, **data de nascimento**,\*\* data de falecimento\*\* (opcional) e país de origem.
+
+Crie alguns registros de autores em variáveis separadas ou em um Array, e a seguir crie alguns registros de livros desses autores. Ao final imprima as informações.
+
+```csharp
+// Resposta
+```
+
+**(4).** Crie uma enumeração para representar os meses do ano no calendário gregoriano. A partir dessa enumeração, crie uma estrutura (struct) contendo duas propriedades: **mês**, do tipo da enumeração de meses do ano, e **dias do mês**, um inteiro contendo a quantidade de dias naquele mês.
+
+Com sua estrutura de dados montada, crie um array para objetos do tipo da sua estrutura, representando cada um dos meses do ano, e ao final imprima os meses sequencialmente com o respectivo número de dias que ele contem.
+
+```csharp
+// Resposta
+```

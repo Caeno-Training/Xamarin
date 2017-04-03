@@ -1,0 +1,84 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+packages:
+- id: Newtonsoft.Json
+  version: 9.0.1
+---
+
+```csharp
+#r "System.Net.Http"
+#r "Newtonsoft.Json"
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using static System.Console;
+```
+
+## Programação Assíncrona
+
+O C# conta com poderosos recursos para criação de programas assíncronos, essências no desenvolvimento mobile para garantir um programa responsivo e sem congelamentos, mesmo em operações de longa duração como consultas em serviços web.
+
+Nesse Workbook vamos trabalhar alguns exercícios para aplicação de programação assíncrona usando os modelos baseados em eventos (EAP) e o modelo de Tasks com as palavras chave async/await (TAP).
+
+Para isso vamos tirar proveito do Serviço Web “GeoNames” (**http://www.geonames.org**), uma API pública para informações geográficas de todo o mundo.
+
+Para isso vamos utilizar uma classe que representa os dados retornados pelo serviço GeoNames, para o qual o resultado será serializado usando a biblioteca Newtonsoft.Json. Abaixo sua declaração:
+
+```csharp
+// Representa um país do GeoNames
+public class Country {
+
+    [JsonProperty("geonameId")]
+    public int Id { get; set; }
+
+    [JsonProperty("countryName")]
+    public string Name { get; set; }
+    
+    public string Capital { get; set; }
+
+    public int Population { get; set; }
+
+}
+```
+
+Note que não foram incluídos todos as propriedades disponíveis no serviço, então pode ser necessário modificar a classe para incluir outros atributos de acordo com o que o exercício solicitar.\
+\
+**(1).** Elabore um programa que obtém a lista de países a partir do serviço GeoNames, usando a API “Country Info” (http://www.geonames.org/export/web-services.html#countryInfo). Obtenha o retorno em JSON.
+
+```csharp
+// Declara um objeto HTTP Client
+var httpClient = new HttpClient();
+
+// Utiliza o método GetStringAsync para obter o response como uma string representando seu conteúdo
+var jsonResponse = await httpClient.GetStringAsync("http://api.geonames.org/countryInfoJSON?username=ravero");
+
+// Deserializa
+var countries = JObject.Parse(jsonResponse)["geonames"].ToObject<IList<Country>>();
+foreach (var country in countries) {
+    Console.WriteLine($"{country.Name}");
+}
+```
+
+**(2).** Elabore um programa que obtenha as informações do Brasil (código BR) e da Austrália (AU) a partir do serviço GeoNames, usando a API “Country Info” (http://www.geonames.org/export/web-services.html#countryInfo). Obtenha o retorno em JSON.
+
+```csharp
+// Resposta
+```
+
+**(3).** Elabore uma classe que encapsule as chamadas para fazer pesquisas de países na API do GeoNames, de forma que seus métodos sejam assíncronos. Faça algumas chamadas para:\\
+
+* Obter a lista de continentes\\
+
+* Obter a lista dos primeiros 3 países de cada continente\\
+
+* Obter a lista dos países mais populosos\
+  \
+  Dica: utilize LINQ para fazer agregação das informações.
+
+```csharp
+// Resposta
+```

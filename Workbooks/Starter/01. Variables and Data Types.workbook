@@ -1,0 +1,32 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+// Permite usar o método "System.Console.Writeline()" como uma função
+using static System.Console;
+```
+
+### Declaração de Variáveis e Tipos Básicos
+
+Nesse exercício vamos declarar algumas variáveis dos tipos básicos do C# e realizar algumas operações com elas.
+
+**(1).** Escrever um programa que carregue quatro números inteiros em variáveis distintas e calcule a média aritmética entre eles apresentando no final.
+
+```csharp
+// Resposta
+```
+
+**(2).** Escrever um programa que carregue o nome de uma pessoa em uma variável e imprima a mensagem: “Bem-vindo ao curso de Criação de Apps, NomePessoa“.
+
+```csharp
+// Resposta
+```
+
+**(3).** Escreva um programa que mostre o antecessor e o sucessor de um número inteiro carregado em uma variável.
+
+```csharp
+// Resposta
+```

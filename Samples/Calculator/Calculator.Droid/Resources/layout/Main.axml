@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/displayEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:enabled="false"
+        android:gravity="end|right"
+        android:textSize="32sp"
+        android:text="0" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/displayEditText"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="7" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="8" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="9" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="OperationClicked"
+                android:tag="4"
+                android:text="/" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="4" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="5" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="6" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="OperationClicked"
+                android:tag="3"
+                android:text="X" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="1" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="2" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="3" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="OperationClicked"
+                android:tag="2"
+                android:text="-" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="DigitClicked"
+                android:text="0" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="ResetClicked"
+                android:text="AC" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="EqualsClicked"
+                android:text="=" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="OperationClicked"
+                android:tag="1"
+                android:text="+" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="192dp"
+                android:layout_height="64dp" />
+            <Button
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:onClick="OperationClicked"
+                android:tag="5"
+                android:text="xʸ" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

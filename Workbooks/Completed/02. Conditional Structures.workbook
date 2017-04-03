@@ -1,0 +1,113 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+// Permite usar o método "System.Console.Writeline()" como uma função
+using static System.Console;
+```
+
+### Estruturas Condicionais
+
+Alguns exercícios para prática de aplicação das estruturas condicionais do C#.
+
+**(1).** Escreva um programa que informa se um número carregado em uma variável e informe se ele é divisível por 5.
+
+```csharp
+// Declara um número inteiro
+var number = 32;
+
+// Utiliza o if...else para escrever o resultado
+if ((number % 5) == 0)
+    WriteLine($"O número {number} é divisível por 5!");
+else
+    WriteLine($"O número {number} não é divisível por 5.");
+```
+
+**(2).** Elabore um programa que carregue a idade de uma pessoa em uma variável, identificando sua classe eleitoral, onde:
+
+* menor que 16 anos -> Não eleitor
+
+* entre 16 e 18 anos -> Eleitor facultativo
+
+* entre 18 e 65 anos -> Eleitor obrigatório.
+
+```csharp
+// Declara uma variável inteira para armazenar a idade
+var age = 23;
+
+// Utiliza a estrutura if..else if..else para verificar a classe eleitoral.
+if (age < 16) {
+    WriteLine("Não eleitor.");
+} else if ((age >= 16 && age < 18) || (age > 65)) {
+    WriteLine("Eleitor facultativo.");
+} else {
+    WriteLine("Eleitor Obrigatório.");
+}
+```
+
+**(3).** Elabore um programa que calcula o IMC de uma pessoa de acordo com o seu peso e sua altura, considerando a formula:
+
+* IMC = Peso / Altura²
+
+* Classificações:
+
+  * menor que 20 -> Abaixo do Peso
+
+  * entre 20 e 25 -> Normal
+
+  * entre 26 e 30 -> Acima do Peso
+
+  * entre 31 e 35 -> Obeso
+
+  * maior que 35 -> Obesidade mórbida
+
+> **Nota**: o método **Math.Pow()** é usado para calcular a potência de um número. O C# não disponibiliza de um operador de potência como outras linguagens.
+
+```csharp
+// Nos permite chamar os métodos static da classe Math como funções
+using static System.Math;
+
+// Declara variáveis de entrada
+var peso = 100.0;
+var altura = 1.80;
+
+// Executa o cálculo do IMC
+var imc = peso / (Pow(altura, 2));
+
+// Utiliza a estrutura if..else if..else para verificar a classificaçãão do IMC.
+if (imc < 20.0) WriteLine("Abaixo do peso");
+else if (imc <= 25) WriteLine("Normal");
+else if (imc <= 30) WriteLine("Acima do Peso");
+else if (imc <= 35) WriteLine("Obeso");
+else WriteLine("Obesidade mórbida");
+```
+
+**(4).** Construa um programa que dado um número inteiro informe o mês correspondente.
+
+```csharp
+// Declara uma variável que representa o número de um mês de 1 a 12.
+int month = 3;
+
+// Utiliza a estrutura switch para determinar o mês.
+// A instrução default é executada quando nenhum dos critérios anteriores é satisfeito. 
+switch (month) {
+    case 1: WriteLine("Janeiro"); break;
+    case 2: WriteLine("Fevereiro"); break;
+    case 3: WriteLine("Março"); break;
+    case 4: WriteLine("Abril"); break;
+    case 5: WriteLine("Maio"); break;
+    case 6: WriteLine("Junho"); break;
+    case 7: WriteLine("Julho"); break;
+    case 8: WriteLine("Agosto"); break;
+    case 9: WriteLine("Setembro"); break;
+    case 10: WriteLine("Outubro"); break;
+    case 11: WriteLine("Novembro"); break;
+    case 12: WriteLine("Dezembro"); break;
+    default:
+        WriteLine("Não existe!");
+        break;
+}
+```

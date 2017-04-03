@@ -1,0 +1,89 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+// Permite usar o método "System.Console.Writeline()" como uma função
+using static System.Console;
+```
+
+### Estruturas de Repetição
+
+Alguns exercícios para prática de aplicação das estruturas condicionais do C#.
+
+**(1).** Formule um programa que declare um array de cinco números e conte quantos deles são negativos.
+
+```csharp
+// Declara um array com 5 números utilizando a inicialização de arrays do C#
+var numbers = new int[] { 10, -4, 3, -5, 9 };
+var negativeCounter = 0;        // Contador dos negativos
+
+// Usando o foreach passamos por cada número para verificar se é negativo
+foreach (var n in numbers) {
+    // A verificação utiliza o operador ternário
+    negativeCounter += (n < 0) ? 1 : 0;
+}
+
+// Imprime o resultado
+WriteLine($"Na lista há {negativeCounter} números negativos.");
+```
+
+**(2).** Escreva um programa que carrega uma lista com 10 ou mais elementos e os escreva em ordem contrária.
+
+```csharp
+//
+// FORMA 1: Usando loops
+
+// Declara uma lista com 10 números 
+var numbers = new int[] { 1, 3, 4, 6, 10, 9, 7, 3, 12, 25, 5 };
+
+// Declara um array para armazenar os números invertidos.
+// O array tem o mesmo tamanho do original
+var reversedNumbers = new int[numbers.Length];
+
+// Usa um for each para carregar os números em ordem inversa
+for (int i = 0, l = numbers.Length - 1; l >= 0; i++, l--) {
+    reversedNumbers[i] = numbers[l];
+}
+
+// Imprime o resultado
+foreach (var n in reversedNumbers)
+    Write($"{n}, ");
+
+//
+// FORMA 2: Usando o método "Reverse()"
+
+// O método Reverse() faz parte das extensões do LINQ e retorna uma lista com os elementos da sequência em ordem inversa.
+// É necessário usar o método "ToArray()" para obter essa lista na forma de um array padrão.  
+reversedNumbers = numbers.Reverse().ToArray();
+
+// Imprime o resultado
+WriteLine();
+foreach (var n in reversedNumbers)
+    Write($"{n}, ");
+```
+
+**(3).** Construa um programa que leia uma palavra e escreva ela de trás para frente. Verifique se a palavra é um palíndromo (ou seja, elas podem ser lidas da esquerda para a direita ou da direita para a esquerda).
+
+```csharp
+// Declara uma variável para armazenar a palavra
+var word = "arara";
+
+// Declara um array de chars para armazenar a palavra invertida
+var reversedWord = new char[word.Length];
+
+// Usa um loop para registrar a palavra ao invertida no novo array
+for (int i = (word.Length - 1), j = 0; i >= 0; i--, j++) {
+    reversedWord[j] = word[i];
+}
+
+// Carrega o resultado em uma string e exibe
+var reversed = new string(reversedWord);
+WriteLine(reversed);
+
+// Verifica se é palíndromo
+if (word == reversed)
+    WriteLine("Palíndromo");
+```

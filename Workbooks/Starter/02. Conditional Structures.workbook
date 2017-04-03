@@ -1,0 +1,58 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+// Permite usar o método "System.Console.Writeline()" como uma função
+using static System.Console;
+```
+
+### Estruturas Condicionais
+
+Alguns exercícios para prática de aplicação das estruturas condicionais do C#.
+
+**(1).** Escreva um programa que informa se um número carregado em uma variável e informe se ele é divisível por 5.
+
+```csharp
+// Resposta
+```
+
+**(2).** Elabore um programa que carregue a idade de uma pessoa em uma variável, identificando sua classe eleitoral, onde:
+
+* menor que 16 anos -> Não eleitor
+
+* entre 16 e 18 anos -> Eleitor facultativo
+
+* entre 18 e 65 anos -> Eleitor obrigatório.
+
+```csharp
+// Resposta
+```
+
+**(3).** Elabore um programa que calcula o IMC de uma pessoa de acordo com o seu peso e sua altura, considerando a formula:
+
+* IMC = Peso / Altura²
+
+* Classificações:
+
+  * menor que 20 -> Abaixo do Peso
+
+  * entre 20 e 25 -> Normal
+
+  * entre 26 e 30 -> Acima do Peso
+
+  * entre 31 e 35 -> Obeso
+
+  * maior que 35 -> Obesidade mórbida
+
+```csharp
+// Resposta
+```
+
+**(4).** Construa um programa que dado um número inteiro informe o mês correspondente.
+
+```csharp
+// Resposta
+```

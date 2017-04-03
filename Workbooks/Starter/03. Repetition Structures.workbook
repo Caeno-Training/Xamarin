@@ -1,0 +1,32 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+```csharp
+// Permite usar o método "System.Console.Writeline()" como uma função
+using static System.Console;
+```
+
+### Estruturas de Repetição
+
+Alguns exercícios para prática de aplicação das estruturas de repetição do C#.
+
+**(1).** Formule um programa que declare um array de cinco números e conte quantos deles são negativos.
+
+```csharp
+// Resposta
+```
+
+**(2).** Escreva um programa que carrega uma lista com 10 ou mais elementos e os escreva em ordem contrária.
+
+```csharp
+// Resposta
+```
+
+**(3).** Construa um programa que leia uma palavra e escreva ela de trás para frente. Verifique se a palavra é um palíndromo (ou seja, elas podem ser lidas da esquerda para a direita ou da direita para a esquerda).
+
+```csharp
+// Resposta
+```

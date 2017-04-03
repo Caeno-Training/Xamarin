@@ -1,0 +1,173 @@
+---
+uti: com.xamarin.workbook
+platforms:
+- Console
+---
+
+## LINQ
+
+O LINQ (sigla de *Language Integrated Query*) é um poderoso conjunto de extensões para trabalhar com coleções de dados dentro da Linguagem C#. Além de incluir expressões de linguagem especificas para criar consultas de dados, o LINQ também inclui um riquissimo conjunto de extensões que operam sobre o tipo *IEnumerable<T>*, proporcionando capacidade de filtragem, agregação, projeção e transformação de dados.
+
+Nesse Workbook vamos trabalhar alguns exercícios para aplicação do LINQ com C#.
+
+Para esses exercícios vamos nos basear na classe **Book** já conhecida de nosso exercício anterior, que agora inclui mais 2 propriedades para armazenar o preço e a quantidade em estoque do livro, e também declaramos uma variavel ***bookshelf ***com uma lista livros.
+
+```csharp
+// Uma classe para representar as informações de um livro.
+class Book {
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public string Publisher { get; set; }
+    public int Year { get; set; }
+    public decimal Price { get; set; }
+    public int StockQuantity { get; set; }
+}
+
+// Cria uma lista de livros
+var bookshelf = new List<Book> {
+	new Book { Title = "A Divina Comédia", Author = "Dante Alighieri", 
+        Publisher = "Editora 34", Year = 1321, 
+        Price = 4.5M, StockQuantity = 10  },
+	new Book { Title = "A Laranja Mecânica", Author = "Anthony Burgess", 
+        Publisher = "Aleph", Year = 1962,
+        Price = 15.0M, StockQuantity = 3 },
+	new Book { Title = "A Montanha Mágica", Author = "Thomas Mann",
+        Publisher = "Nova Fronteira", Year = 1924,
+        Price = 6.3M, StockQuantity = 2 },
+	new Book { Title = "Admirável Mundo Novo", Author = "Aldous Huxley", 
+        Publisher = "Biblioteca Azul", Year = 1932,
+        Price = 18.45M, StockQuantity = 15 },
+	new Book { Title = "Cem Anos de Solidão", Author = "Gabriel García Márquez", 
+        Publisher = "Record", Year = 1967,
+        Price = 24.90M, StockQuantity = 12 },
+	new Book { Title = "Ressureição", Author = "Liev Tolstói", 
+        Publisher = "Record", Year = 1899,
+        Price = 24.90M, StockQuantity = 12 },
+	new Book { Title = "Dom Quixote", Author = "Miguel de Cervantes", 
+        Publisher = "Francisco de Robles", Year = 1605,
+        Price = 1.0M, StockQuantity = 0 },
+	new Book { Title = "Drácula", Author = "Bram Stoker", 
+        Publisher = "Zahar", Year = 1897,
+        Price = 35.5M, StockQuantity = 9 },
+	new Book { Title = "O Homem que Calculava", Author = "Malba Tahan", 
+        Publisher = "Record", Year = 1949,
+        Price = 36.25M, StockQuantity = 19 },
+	new Book { Title = "Senhora", Author = "Jose de Alencar", 
+        Publisher = "B. L. Garnier", Year = 1875,
+        Price = 2.5M, StockQuantity = 3 },
+	new Book { Title = "Em Busca do Tempo Perdido", Author = "Marcel Proust", 
+        Publisher = "L&PM", Year = 1913,
+        Price = 5.5M, StockQuantity = 0 },
+	new Book { Title = "Ensaio Sobre a Cegueira",  Author = "Ensaio Sobre a Cegueira", 
+        Publisher = "Companhia das Letras", Year = 1995,
+        Price = 12.5M, StockQuantity = 5 },
+	new Book { Title = "Guerra e Paz", Author = "Liev Tolstói", 
+        Publisher = "Cosac & Naify", Year = 1869,
+        Price = 9.95M, StockQuantity = 0 },
+	new Book { Title = "Moby Dick", Author = "Herman Melville", 
+        Publisher = "Landmark", Year = 1851,
+        Price = 45.0M, StockQuantity = 3 },
+	new Book { Title = "O Apanhador no Campo de Centeio",  Author = "J. D. Salinger", 
+        Publisher = "Editora do Autor", Year = 1951,
+        Price = 22.5M, StockQuantity = 1 },
+	new Book { Title = "O Guarani", Author = "Jose de Alencar",
+        Publisher = "Jiahu Books", Year = 1857,
+        Price = 12.5M, StockQuantity = 12 },
+	new Book { Title = "O Homem sem Qualidades", Author = "Robert Musil", 
+        Publisher = "Nova Fronteira", Year = 1930,
+        Price = 15.0M, StockQuantity = 0 },
+	new Book { Title = "O Processo", Author = "Franz Kafka", 
+        Publisher = "Companhia de Bolso", Year = 1925,
+        Price = 18.4M, StockQuantity = 1 },
+	new Book { Title = "O Retrato de Dorian Gray", Author = "Oscar Wilde", 
+        Publisher = "L&M Pocket", Year = 1890,
+        Price = 23.4M, StockQuantity = 10 },
+	new Book { Title = "O Som e a Fúria", Author = "William Faulkner", 
+        Publisher = "Cosac & Naify", Year = 1929,
+        Price = 10.0M, StockQuantity = 30 },
+	new Book { Title = "As Portas da Percepção", Author = "Aldous Huxley", 
+        Publisher = "Chatto & Windus", Year = 1954,
+        Price = 19.3M, StockQuantity = 8 },
+	new Book { Title = "Os Miseráveis", Author = "Victor Hugo",
+        Publisher = "Martin Claret", Year = 1862,
+        Price = 56.60M, StockQuantity = 4 },
+	new Book { Title = "Os Três Mosqueteiros", Author = "Alexandre Dumas",
+        Publisher = "Zahar", Year = 1844,
+        Price = 32.0M, StockQuantity = 7 },
+	new Book { Title = "Ulisses", Author = "James Joyce",
+        Publisher = "Penguin", Year = 1922,
+        Price = 25.0M, StockQuantity = 13 },
+	new Book { Title = "Iracema", Author = "Jose de Alencar",
+        Publisher = "Typ. de Viana & Filhos", Year = 1865,
+        Price = 25.0M, StockQuantity = 13 },
+	new Book { Title = "Amor nos Tempos de Colera", Author = "Gabriel García Márquez", 
+        Publisher = "Record", Year = 1985,
+        Price = 44.95M, StockQuantity = 0 },
+};
+```
+
+**(1).** Enumere a coleção de livros apresentando seu título e autor e o ano da publicação. Ordene a saída de acordo com o ano de publicação, apresentando os livros mais antigos primeiro. Utilize a linguagem de consulta embutida do C#, e refaça o exercício usando os métodos de extensão do LINQ.
+
+```csharp
+// Resposta
+```
+
+**(2).** Obtenha a lista de livros que estão disponíveis em estoque. Utilize projeção para selecionar apenas as informações: **Titulo**, **Autor** e **Ano**. Imprima a lista.
+
+```csharp
+// Resposta
+```
+
+**(3).** Obtenha a contagem dos registros na coleção de livros, cujo o ano de publicação seja maior que 1915. Separadamente obtenha a contagem dos livros publicados pela editora ‘Zahar’.
+
+```csharp
+// Resposta
+```
+
+**(4).** Imprima a lista dos autores contidos na lista que publicaram livros a partir do século 20.
+
+```csharp
+// Resposta
+```
+
+**(5).** Imprima a lista de editoras com a quantidade total de livros em estoque que cada uma delas tem.
+
+```csharp
+// Resposta
+```
+
+**(6).** Obtenha os 3 livros a partir do 6 livro da listagem de ordenada por ano da publicação.
+
+```csharp
+// Resposta
+```
+
+**(7).** Calcule e apresente o valor médio dos livros.
+
+```csharp
+// Resposta
+```
+
+**(8).** Imprima uma lista de livros agrupados pelo autor.
+
+```csharp
+// Resposta
+```
+
+**(9).** Calcule a comissão do vendedor de livros de acordo com a seguinte premissa:
+
+* Livros anteriores a 1900: 0,5% de comissão
+
+* Livros anteriores a 1950: 1% de comissão
+
+* Livros posteriores a 1950: 2% de comissão
+
+```csharp
+// Resposta
+```
+
+**(10).** Determine o maior e o menor preço dos livros em estoque.
+
+```csharp
+// Resposta
+```
