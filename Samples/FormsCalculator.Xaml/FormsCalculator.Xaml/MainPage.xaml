@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="FormsCalculator.Xaml.MainPage">
+
+	<StackLayout Margin="16,32">
+		<Label
+			x:Name="displayLabel"
+			FontAttributes="Bold"
+			FontSize="Large"
+			HorizontalTextAlignment="End"
+			Text="0" />
+
+		<StackLayout 
+			HorizontalOptions="Center"
+			VerticalOptions="CenterAndExpand">
+			<StackLayout Orientation="Horizontal">
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="7"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="8"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="9"
+					TextColor="White" />
+				<Button 
+					Clicked="OperationClickedHandler"
+					CommandParameter="4"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="÷"
+					TextColor="White" />
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="4"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="5"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="6"
+					TextColor="White" />
+				<Button 
+					Clicked="OperationClickedHandler"
+					CommandParameter="3"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="×"
+					TextColor="White" />
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="1"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="2"
+					TextColor="White" />
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="3"
+					TextColor="White" />
+				<Button 
+					Clicked="OperationClickedHandler"
+					CommandParameter="2"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="−"
+					TextColor="White" />
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Button 
+					Clicked="DigitClickedHandler"
+					BackgroundColor="Gray"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="0"
+					TextColor="White" />
+				<Button 
+					Clicked="ResetClickedHandler"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="AC"
+					TextColor="White" />
+				<Button 
+					Clicked="EqualClickedHandler"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="="
+					TextColor="White" />
+				<Button 
+					Clicked="OperationClickedHandler"
+					CommandParameter="1"
+					BackgroundColor="Maroon"
+					FontAttributes="Bold"
+					HeightRequest="64"
+					WidthRequest="64"
+					Text="+"
+					TextColor="White" />
+			</StackLayout>
+		</StackLayout>
+	</StackLayout>
+</ContentPage>
