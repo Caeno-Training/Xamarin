@@ -3,22 +3,25 @@
 	xmlns="http://xamarin.com/schemas/2014/forms" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 	x:Class="HelloForms.CSharp.MainPage">
-	<StackLayout 
-		Margin="16,0"
-		VerticalOptions="Center">
+	<ContentPage.Content>
+		<StackLayout 
+			Margin="16,0"
+			VerticalOptions="Center">
 
-		<Label 
-			FontAttributes="Bold"
-			Text="Diga seu nome!" />
+			<Label 
+				FontAttributes="Bold"
+				Text="Diga seu nome!" />
 
-		<Entry 
-			x:Name="nameEntry"
-			Placeholder="Nome" />
+			<Entry 
+				x:Name="nameEntry"
+				Placeholder="Nome" />
 
-		<Button
-			Clicked="SendClickedHandler"
-			HorizontalOptions="End"
-			Text="Enviar" />
-		
-	</StackLayout>
+			<Button
+				Clicked="SendClickedHandler"
+				HorizontalOptions="End"
+				Text="Enviar" />
+			
+		</StackLayout>
+		<Button />
+	 </ContentPage.Content>
 </ContentPage>
