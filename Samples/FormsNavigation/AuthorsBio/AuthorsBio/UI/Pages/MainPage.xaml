@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="AuthorsBio.UI.Pages.MainPage"
+    Title="Autores">
+
+    <StackLayout VerticalOptions="Center">
+        <Button
+            Clicked="OnAuthorClicked"
+            CommandParameter="1"
+            Text="Franz Kafka" />
+        <Button
+            Clicked="OnAuthorClicked"
+            CommandParameter="2"
+            Text="Gabriel García Márquez" />
+        <Button
+            Clicked="OnAuthorClicked"
+            CommandParameter="3"
+            Text="George Orwell" />
+        <Button
+            Clicked="OnAuthorClicked"
+            CommandParameter="4"
+            Text="José Saramago" />
+        <Button
+            Clicked="OnAuthorClicked"
+            CommandParameter="5"
+            Text="Aldous Huxley" />            
+    </StackLayout>
+
+</ContentPage>
