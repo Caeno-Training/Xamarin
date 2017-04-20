@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="RgbConverter.UI.Pages.MainPage">
+
+    <ContentPage Title="RGB para HEX">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Label 
+                Grid.ColumnSpan="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Text="Digite os Valores R,G e B" />
+
+            <Label
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Red" />
+            <Entry
+                x:Name="redEntry"
+                Grid.Row="2"
+                StyleId="Red"
+                TextChanged="OnRgbEntryChanged"
+                VerticalOptions="Start"
+                Margin="16,0"
+                Keyboard="Numeric"
+                Placeholder="Red"
+                Text="0" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Green" />
+            <Entry
+                x:Name="greenEntry"
+                Grid.Row="2"
+                Grid.Column="1"
+                StyleId="Green"
+                TextChanged="OnRgbEntryChanged"
+                VerticalOptions="Start"
+                Margin="16,0"
+                Keyboard="Numeric"
+                Placeholder="Green"
+                Text="0" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Blue" />
+            <Entry
+                x:Name="blueEntry"
+                Grid.Row="2"
+                Grid.Column="2"
+                StyleId="Blue"
+                TextChanged="OnRgbEntryChanged"
+                VerticalOptions="Start"
+                Margin="16,0"
+                Keyboard="Numeric"
+                Placeholder="Blue"
+                Text="0" />
+
+            <Label
+                x:Name="hexValueLabel"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Text="#000000" />
+            
+            <BoxView
+                x:Name="hexColorBox"
+                Grid.Row="4"
+                Grid.ColumnSpan="3"
+                Color="Black" />
+            
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="HEX para RGB">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Text="Digite os Valores RGB em Hexadecimal" />
+
+            <Label
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="RGB Hex" />
+            <Entry
+                x:Name="hexEntry"
+                Grid.Row="2"
+                StyleId="Red"
+                TextChanged="OnHexEntryChanged"
+                VerticalOptions="Start"
+                Margin="16,0"
+                Keyboard="Numeric"
+                Placeholder="Red"
+                Text="0" />
+
+            <Label
+                x:Name="rgbValueLabel"
+                Grid.Row="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Text="RGB (0, 0, 0)" />
+            
+            <BoxView
+                x:Name="rgbColorBox"
+                Grid.Row="4"
+                Color="Black" />
+            
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="Sobre">
+        <StackLayout 
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Label 
+                HorizontalOptions="Center"
+                Text="RGB Converter" />
+            <Label 
+                HorizontalOptions="Center"
+                Text="Versão 1.0.0" />
+        </StackLayout>
+    </ContentPage>
+    
+</TabbedPage>
